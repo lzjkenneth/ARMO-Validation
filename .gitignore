@@ -1,0 +1,7 @@
+data/raw/
+data/processed/uscrn_hourly.parquet
+data/processed/*.log
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/

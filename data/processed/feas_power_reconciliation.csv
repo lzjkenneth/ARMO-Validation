@@ -1,0 +1,8 @@
+case (NESZ -25 dB at 45 deg off-nadir unless stated),average_rf_W,peak_rf_W_at_10pct_duty
+"100 % aperture efficiency, 9 dB (NF+losses 6 + ScanSAR 3), 20 MHz  [team's first model, 498 W peak]",50,498
+"60 % aperture efficiency, 6 dB NF+losses only, 20 MHz",69,693
+"60 % aperture efficiency, 12 dB (6 + 3 beam edge + 3 ScanSAR), 20 MHz  [team's revised model, 2.8 kW peak]",276,2759
+"same, but NESZ -28 dB (SAOCOM / ROSE-L class)",550,5504
+"same as the revised model, but 40 MHz bandwidth",552,5518
+"same as the revised model, but a 7.0 m reflector",139,1392
+"SweepSAR with 11 beams, revised-model losses, 20 MHz",3035,30346

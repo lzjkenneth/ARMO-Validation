@@ -1,0 +1,5 @@
+mode,swath_km,elevation_beams,single_look_az_m,single_look_ground_range_m_20MHz,single_look_ground_range_m_40MHz,single_look_ground_range_m_80MHz,looks_100m_20MHz,looks_200m_20MHz,looks_200m_40MHz,looks_200m_80MHz,speckle_change_db_100m_20MHz,speckle_change_db_200m_20MHz,speckle_change_db_200m_40MHz,speckle_change_db_200m_80MHz,nesz_far_edge_db_at_280W_avg_12dB_losses,p_avg_W_for_minus25dB,p_peak_kW_for_minus25dB_10pct_duty,data_rate_Mbit_s_20MHz,GB_per_day_CONUS_1p5pct,downlink_min_per_day_400Mbit_s
+Stripmap - one beam,54,1,3.5,14.3,7.1,3.6,198,791,1581,3163,0.44,0.22,0.15,0.11,-25.1,276,2.76,269,43.5,14.5
+ScanSAR/TOPS - 8 beams (-3 dB crossover),362,8,48.1,14.3,7.1,3.6,15,58,116,233,1.64,0.81,0.57,0.4,-25.1,276,2.76,269,43.5,14.5
+ScanSAR/TOPS - 11 beams (-1.5 dB crossover; team),362,11,66.2,14.3,7.1,3.6,11,42,85,169,1.93,0.95,0.67,0.47,-25.1,276,2.76,269,43.5,14.5
+SweepSAR/DBF - 11 receive beams,362,11,3.5,14.3,7.1,3.6,198,791,1581,3163,0.44,0.22,0.15,0.11,-14.7,3035,30.35,2957,479,159.7
