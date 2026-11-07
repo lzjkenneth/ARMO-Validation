@@ -45,7 +45,8 @@ real look times; ARMO is simulated (620 km dawn-dusk orbit, 25–45° off-nadir,
 
 ## Run it
 
-Python 3.11+ with `numpy pandas pyarrow scipy matplotlib pyproj h5py rasterio`. Steps 1–6 and 9–11 need no login.
+Python 3.11+ with `numpy pandas pyarrow scipy matplotlib pyproj h5py rasterio` (`python3 -m venv .venv` then
+`.venv/bin/pip install -r requirements.txt`). Steps 1–6 and 9–11 need no login.
 Step 7 needs a free NASA Earthdata login in a netrc file (`EARTHDATA_NETRC`, default `~/.netrc`); it is never
 printed or stored in the repository.
 
@@ -77,6 +78,7 @@ feasibility tables and `figures/feas_*.png`. Every number quoted in the document
 | Sentinel-1 look times, RTC backscatter | Microsoft Planetary Computer (`sentinel-1-grd`, `sentinel-1-rtc`), CC BY 4.0 | Open |
 | NISAR look times; GCOV backscatter | NASA CMR; ASF (`NISAR_L2_GCOV_PROVISIONAL_V1`) | CMR open; ASF free Earthdata login |
 | ALOS-2 ScanSAR look times | NASA CMR (`ALOS2_L1_PSR2`) | Open metadata |
+
 
 ## Evidence labels
 
