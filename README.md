@@ -1,15 +1,17 @@
-# ARMO validation: an independent re-implementation of the ARMO analysis
+# ARMO validation: a companion analysis for the ARMO mission proposal
 
 **ARMO** (Agricultural Rapid Moisture Observatory) is a two-satellite L-band SAR mission proposed by ES4304 Group 2
-(Satellite Remote Sensing, NTU, 2026) to observe soil wetting within days of rain. This repository is a second,
-independent implementation of the analysis behind it, written from the definitions in the team's report rather than
-copied from the team's code ([zheniannn/ARMO](https://github.com/zheniannn/ARMO), where Tang Zhen Ian built the ARMO
-analysis), so agreement between the two is a real check. It also adds tests: waiting time from wetting to the first
-look, latitude, design sweeps, orbit repeat options and measured L-band noise. Everything uses open data: NOAA USCRN
-hourly ground truth, real Sentinel-1 and NISAR acquisition records, and NISAR and Sentinel-1 images.
+(Satellite Remote Sensing, NTU, 2026) to observe soil wetting within days of rain. This repository is a companion to the
+team's ARMO analysis ([zheniannn/ARMO](https://github.com/zheniannn/ARMO), built by Tang Zhen Ian). It implements the
+capture analysis a second time from the definitions in the team's report, as a cross-check, and extends it with
+further tests: waiting time from wetting to the first look, latitude, design sweeps, orbit repeat options and measured
+L-band noise. It also holds the scripts behind the final report's engineering, budget and revisit numbers
+([report-support/](report-support/README.md)). Everything uses open data: NOAA USCRN hourly ground truth, real
+Sentinel-1 and NISAR acquisition records, and NISAR and Sentinel-1 images.
 
-The re-implementation was made on 7 November 2026, after the group presented ARMO on 5 November, and extended on
-8 November with the scripts behind the final report's new numbers ([report-support/](report-support/README.md)).
+The cross-check was made on 7 November 2026, after the group presented ARMO on 5 November, and the report-support
+scripts were added on 8 November. How the group arrived at ARMO, from dozens of candidate problems and pilot analyses,
+is summarised in [docs/IDEA_SEARCH.md](docs/IDEA_SEARCH.md).
 
 ## What it checks
 
@@ -17,7 +19,7 @@ The report's first three objectives, on the same data and definitions. O1 uses a
 matched cohort of storms from 17 June to 31 October 2026 (the continuous NISAR record): 982 events at 107 stations
 here, 979 in the team's run.
 
-| Report objective | This re-implementation | Team |
+| Report objective | This cross-check | Team |
 |---|---|---|
 | O1: wetting windows are short | 3,343 events at 120 stations; median window 1.79 days; 55 % shorter than 48 h | 3,340 events; 1.8 days; 55 % |
 | O2: today's satellites miss about half of the events | Sentinel-1 30.3 %, NISAR 37.4 %, either 51.3 % | 30.2, 37.9 and 51.6 % |
@@ -60,6 +62,7 @@ simulated (620 km dawn–dusk orbit, 25–45° off-nadir, 8 starting positions).
 |---|---|
 | [docs/RESULTS.md](docs/RESULTS.md) | All results with tables and figures: capture, waiting time, latitude, event definition, design sweeps, orbit repeat options, measured noise, scope and assumptions |
 | [docs/DATA_ACCESS.md](docs/DATA_ACCESS.md) | Which radar records are openly available, and NISAR's measured gaps (2026 hole, revisit, delivery delay) |
+| [docs/IDEA_SEARCH.md](docs/IDEA_SEARCH.md) | How the group arrived at ARMO: concept notes, idea bank, ground-truth checks and pilots (October–November 2026) |
 | [report-support/](report-support/README.md) | Scripts behind the final report's mass, delta-v, launch, budget and station-by-station revisit numbers, and Figures 4, 6, 8, 9 and 10 |
 
 ## Run it

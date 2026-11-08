@@ -1,8 +1,9 @@
-# ARMO: independent re-implementation and additional tests
+# ARMO: cross-check and additional tests
 
-This is a second, independent implementation of the ARMO analysis. The code was written from the definitions in the
-team's report, not copied from the team's repository, so agreement between the two is a real check. It then adds
-tests: waiting time, latitude, design sweeps, orbit repeat options and measured L-band noise.
+This is a second implementation of the ARMO analysis, written from the definitions in the team's report as a
+cross-check of the team's results; because it shares no code with the team's repository, agreement between the two
+confirms them. It then adds tests: waiting time, latitude, design sweeps, orbit repeat options and measured L-band
+noise.
 Every number below is produced by a script in `code/` and collected in `data/processed/headline.json`;
 `tests/test_numbers.py` checks that this document quotes them correctly.
 
