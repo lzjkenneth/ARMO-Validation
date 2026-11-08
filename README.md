@@ -1,11 +1,26 @@
 # ARMO validation: does a two-satellite L-band radar really catch more wetting events?
 
 An independent re-check of the analysis behind **ARMO** (Agricultural Rapid Moisture Observatory), the two-satellite
-L-band SAR mission proposed by ES4304 Group 2, plus tests the proposal does not have yet. The code here was written
-from scratch from the definitions in the team's report, not copied from the team's repository
-([zheniannn/ARMO](https://github.com/zheniannn/ARMO)), so agreement between the two is a real check. Everything uses
-open data: NOAA USCRN hourly ground truth, real Sentinel-1 and NISAR acquisition records, and NISAR and Sentinel-1
-images.
+L-band SAR mission proposed by ES4304 Group 2 (Satellite Remote Sensing, NTU, 2026), plus tests the proposal does not
+have yet. The code here was written from scratch from the definitions in the team's report, not copied from the team's
+repository ([zheniannn/ARMO](https://github.com/zheniannn/ARMO), where Tang Zhen Ian built the ARMO analysis), so
+agreement between the two is a real check. Everything uses open data: NOAA USCRN hourly ground truth, real Sentinel-1
+and NISAR acquisition records, and NISAR and Sentinel-1 images.
+
+## What the re-run checks
+
+The report's first three objectives, on the same data and definitions. O1 uses all 2025-2026 events; O2 and O3 use the
+matched cohort of storms from 17 June to 31 October 2026 (the continuous NISAR record): 982 events at 107 stations
+here, 979 in the team's run.
+
+| Report objective | This re-run | Team |
+|---|---|---|
+| O1: wetting windows are short | 3,343 events at 120 stations; median window 1.79 days; 55 % shorter than 48 h | 3,340 events; 1.8 days; 55 % |
+| O2: today's satellites miss about half of the events | Sentinel-1 30.3 %, NISAR 37.4 %, either 51.3 % | 30.2, 37.9 and 51.6 % |
+| O3: how often a satellite must look, and what ARMO adds | 80 % capture needs a look every 1.45 days; ARMO alone 77.0 %, today + ARMO 82.2 % | 1.46 days; 76.1 % and 81.5 % |
+
+The headline numbers reproduce within about one point. Details, confidence intervals and the method differences (for
+example, gap filling of up to 3 hours) are in [docs/FINDINGS.md](docs/FINDINGS.md), sections 1, 2 and 6.
 
 ## Main results
 
@@ -42,6 +57,7 @@ real look times; ARMO is simulated (620 km dawn-dusk orbit, 25–45° off-nadir,
 | [docs/SUGGESTED_CHANGES.md](docs/SUGGESTED_CHANGES.md) | What the proposal should keep, reword and change, with the supporting numbers |
 | [docs/DATA_ACCESS.md](docs/DATA_ACCESS.md) | Which radar data we can actually get, and NISAR's measured gaps (2026 hole, revisit, delivery delay) |
 | [docs/RESOLUTION_AND_FEASIBILITY.md](docs/RESOLUTION_AND_FEASIBILITY.md) | Resolution target, swath and looks, power, why agencies do not fly more satellites, one vs two satellites, spacecraft numbers (sourced) |
+| [report-support/](report-support/README.md) | Scripts behind the revised report's mass, delta-v, launch, budget and station-by-station revisit numbers, and its Figure 8 (8 November) |
 
 ## Run it
 
@@ -70,6 +86,8 @@ feasibility tables and `figures/feas_*.png`. Every number quoted in the document
 `data/processed/headline.json`, and `tests/test_numbers.py` checks the documents against it. Raw downloads go to
 `data/raw/` and are not committed.
 
+The report-support scripts run the same way; see [report-support/README.md](report-support/README.md).
+
 ## Data sources
 
 | Data | Source | Access |
@@ -78,6 +96,18 @@ feasibility tables and `figures/feas_*.png`. Every number quoted in the document
 | Sentinel-1 look times, RTC backscatter | Microsoft Planetary Computer (`sentinel-1-grd`, `sentinel-1-rtc`), CC BY 4.0 | Open |
 | NISAR look times; GCOV backscatter | NASA CMR; ASF (`NISAR_L2_GCOV_PROVISIONAL_V1`) | CMR open; ASF free Earthdata login |
 | ALOS-2 ScanSAR look times | NASA CMR (`ALOS2_L1_PSR2`) | Open metadata |
+
+## Related repositories
+
+| Repository | What it holds |
+|---|---|
+| [zheniannn/ARMO](https://github.com/zheniannn/ARMO) | The team's ARMO analysis, figures and method notes (Tang Zhen Ian) |
+
+## Licence
+
+Code in this repository is released under the MIT License ([LICENSE](LICENSE)). Data downloaded or derived from NOAA
+USCRN, Copernicus Sentinel-1 (via Microsoft Planetary Computer), NASA NISAR and ALOS-2 metadata keep their providers'
+terms (see Data sources).
 
 
 ## Evidence labels
