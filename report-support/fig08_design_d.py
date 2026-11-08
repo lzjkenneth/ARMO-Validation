@@ -1,4 +1,4 @@
-"""Figure 8 of the rewrite: design D on one day over CONUS (map with scale bar and north arrow) and the Stillwater timeline.
+"""Report Figure 8: design D on one day over CONUS (map with scale bar and north arrow) and the Stillwater timeline.
 
 Uses the independent orbit simulator of this repository (code/04_orbit_sim.py: circular J2 orbit, 620 km,
 ascending node 18:00, right-looking 25-45 deg off-nadir) and the re-run's real look times and USCRN hourly data.

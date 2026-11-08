@@ -1,13 +1,13 @@
-"""Mass, delta-v, launch and budget numbers for the ARMO report rewrite (8 Nov 2026).
+"""Mass, delta-v, launch and budget numbers for the ARMO report (8 Nov 2026).
 
-Inputs are the team's realistic sizing (team repository zheniannn/ARMO, code/06_mission_design.py, realistic_sizing):
+Inputs are the team's realistic sizing (code/06_mission_design.py, realistic_sizing):
   dry mass current best estimate 230 kg, 30 % growth margin, hydrazine Isp 220 s.
 New here: a rideshare launch (SpaceX published price list, fetched 8 Nov 2026 from
 api-rideshare.spacex.com/api/v2/price: US$ 7,000/kg in 2026 and 7,500/kg in 2027; plate limits
 quarter 300 kg, half 452 kg, full 831 kg; listed SSO flights 500-600 km) and a delta-v budget for
-raising from a 500 km insertion (worst case) to the 613 km exact-repeat orbit, drag make-up and a
-controlled deorbit to a 300 km perigee.
-Run: python report-support/launch_mass_budget.py  (no inputs; prints everything quoted in the report)
+raising from a 500 km insertion (worst case) to the 620 km operating orbit, drag make-up and a
+controlled deorbit to a 300 km perigee. (Set H = 620.0 for the exact-repeat alternative: 213 m/s, 330 kg wet.)
+Run: python launch_mass_budget.py  (prints everything quoted in the report)
 """
 import math
 
@@ -53,7 +53,7 @@ def raise_with_trim(h1, h2):
     return 1e3 * ((vp - v1) + math.sqrt(va ** 2 + v2 ** 2 - 2 * va * v2 * math.cos(di))), math.degrees(di)
 
 
-H = 613.0
+H = 620.0
 dry_cbe = 230.0
 dry = dry_cbe * 1.30
 raise_dv, trim_deg = raise_with_trim(500.0, H)

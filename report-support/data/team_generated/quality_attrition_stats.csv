@@ -1,0 +1,37 @@
+panel,sensor,stage,n,denominator,value,ci_lo,ci_hi,cohort
+a,S1 VV,Real look in window,296,979,0.3023493360572012,0.26207571312864564,0.3436289916058474,"979 NISAR-era events, 107 stations"
+a,S1 VV,Valid same- geometry pair,174,979,0.177732379979571,0.14748788234862115,0.21203222069738958,"979 NISAR-era events, 107 stations"
+a,S1 VV,Valid retrieval in pair,174,979,0.177732379979571,0.14748788234862115,0.21203222069738958,"979 NISAR-era events, 107 stations"
+a,S1 VV,Change > 1σ of no-change noise,60,979,0.06128702757916241,0.0437352167827947,0.08209427545815227,"979 NISAR-era events, 107 stations"
+a,S1 VV,valid pair WITHOUT a catalogue look (non-nested),1,174,,,,
+a,NISAR HH,Real look in window,371,979,0.37895812053115424,0.34019445863258735,0.41366257522268424,"979 NISAR-era events, 107 stations"
+a,NISAR HH,Valid same- geometry pair,240,979,0.24514811031664965,0.21111278289919871,0.27505728110799854,"979 NISAR-era events, 107 stations"
+a,NISAR HH,Valid retrieval in pair,216,979,0.22063329928498468,0.18956626607989166,0.2519690921353954,"979 NISAR-era events, 107 stations"
+a,NISAR HH,Change > 1σ of no-change noise,49,979,0.05005107252298264,0.03373015873015873,0.06824131124652233,"979 NISAR-era events, 107 stations"
+a,NISAR HH,valid pair WITHOUT a catalogue look (non-nested),4,240,,,,
+a,NISAR SME2,Real look in window,371,979,0.37895812053115424,0.34019445863258735,0.41366257522268424,"979 NISAR-era events, 107 stations"
+a,NISAR SME2,Valid same- geometry pair,240,979,0.24514811031664965,0.21111278289919871,0.27505728110799854,"979 NISAR-era events, 107 stations"
+a,NISAR SME2,Valid retrieval in pair,139,979,0.14198161389172625,0.11430603584899245,0.17121937077583327,"979 NISAR-era events, 107 stations"
+a,NISAR SME2,Change > 1σ of no-change noise,51,979,0.05209397344228805,0.03684683949856728,0.06727844297143477,"979 NISAR-era events, 107 stations"
+a,NISAR SME2,valid pair WITHOUT a catalogue look (non-nested),4,240,,,,
+a,SMAP all quality,Real look in window,750,979,0.7660878447395302,0.710798026447893,0.8163517011834319,"979 NISAR-era events, 107 stations"
+a,SMAP all quality,Valid same- geometry pair,647,979,0.6608784473953013,0.6058548709989429,0.7136664929403961,"979 NISAR-era events, 107 stations"
+a,SMAP all quality,Valid retrieval in pair,647,979,0.6608784473953013,0.6058548709989429,0.7136664929403961,"979 NISAR-era events, 107 stations"
+a,SMAP all quality,Change > 1σ of no-change noise,334,979,0.3411644535240041,0.2991873525619459,0.38105657595447845,"979 NISAR-era events, 107 stations"
+a,SMAP all quality,valid pair WITHOUT a catalogue look (non-nested),8,647,,,,
+a,SMAP recommended,Real look in window,261,979,0.2665985699693565,0.19595096664234862,0.3405263157894737,"979 NISAR-era events, 107 stations"
+a,SMAP recommended,Valid same- geometry pair,221,979,0.2257405515832482,0.1617305509161518,0.29314516664453594,"979 NISAR-era events, 107 stations"
+a,SMAP recommended,Valid retrieval in pair,221,979,0.2257405515832482,0.1617305509161518,0.29314516664453594,"979 NISAR-era events, 107 stations"
+a,SMAP recommended,Change > 1σ of no-change noise,142,979,0.14504596527068436,0.10244572562012294,0.18973101597034955,"979 NISAR-era events, 107 stations"
+a,SMAP recommended,valid pair WITHOUT a catalogue look (non-nested),4,221,,,,
+a,Field-scale radar fleet (S1 VV or NISAR HH or SME2),detected change (union),111,979,0.11338100102145046,0.09030369276521752,0.139808462818588,"979 NISAR-era events, 107 stations"
+b,S1 VV,detected | sampled (published denominator),206,624,0.3301282051282051,0.27591062801932364,0.385310474504781,2025–2026; 115 stations
+b,NISAR HH,detected | sampled (published denominator),49,216,0.22685185185185186,0.16227773826458036,0.3,2026; 90 stations
+b,NISAR SME2,detected | sampled (published denominator),51,139,0.3669064748201439,0.2866014558689718,0.453916827852998,2026; 68 stations
+b,SMAP all quality,detected | sampled (published denominator),1174,2200,0.5336363636363637,0.5006882169003293,0.565023211391648,2025–2026; 114 stations
+b,SMAP recommended,detected | sampled (published denominator),453,693,0.6536796536796536,0.6126593875374537,0.693168319395924,2025–2026; 56 stations
+c,S1 VV,false alarm | unchanged pair,210,2376,0.08838383838383838,0.0704479276191474,0.10591002617588345,all unchanged same-geometry pairs
+c,NISAR HH,false alarm | unchanged pair,20,511,0.03913894324853229,0.021475580444007342,0.05940644781691284,all unchanged same-geometry pairs
+c,NISAR SME2,false alarm | unchanged pair,32,372,0.08602150537634409,0.0511946337860253,0.12558288610614193,all unchanged same-geometry pairs
+c,SMAP all quality,false alarm | unchanged pair,2211,27190,0.08131666053696211,0.06891793471349869,0.09608065538466531,all unchanged same-geometry pairs
+c,SMAP recommended,false alarm | unchanged pair,1169,13527,0.08641975308641975,0.0762472625388939,0.0969689125919751,all unchanged same-geometry pairs
