@@ -1,26 +1,30 @@
-# ARMO validation: does a two-satellite L-band radar really catch more wetting events?
+# ARMO validation: an independent re-implementation of the ARMO analysis
 
-An independent re-check of the analysis behind **ARMO** (Agricultural Rapid Moisture Observatory), the two-satellite
-L-band SAR mission proposed by ES4304 Group 2 (Satellite Remote Sensing, NTU, 2026), plus tests the proposal does not
-have yet. The code here was written from scratch from the definitions in the team's report, not copied from the team's
-repository ([zheniannn/ARMO](https://github.com/zheniannn/ARMO), where Tang Zhen Ian built the ARMO analysis), so
-agreement between the two is a real check. Everything uses open data: NOAA USCRN hourly ground truth, real Sentinel-1
-and NISAR acquisition records, and NISAR and Sentinel-1 images.
+**ARMO** (Agricultural Rapid Moisture Observatory) is a two-satellite L-band SAR mission proposed by ES4304 Group 2
+(Satellite Remote Sensing, NTU, 2026) to observe soil wetting within days of rain. This repository is a second,
+independent implementation of the analysis behind it, written from the definitions in the team's report rather than
+copied from the team's code ([zheniannn/ARMO](https://github.com/zheniannn/ARMO), where Tang Zhen Ian built the ARMO
+analysis), so agreement between the two is a real check. It also adds tests: waiting time from wetting to the first
+look, latitude, design sweeps, orbit repeat options and measured L-band noise. Everything uses open data: NOAA USCRN
+hourly ground truth, real Sentinel-1 and NISAR acquisition records, and NISAR and Sentinel-1 images.
 
-## What the re-run checks
+The re-implementation was made on 7 November 2026, after the group presented ARMO on 5 November, and extended on
+8 November with the scripts behind the final report's new numbers ([report-support/](report-support/README.md)).
 
-The report's first three objectives, on the same data and definitions. O1 uses all 2025-2026 events; O2 and O3 use the
+## What it checks
+
+The report's first three objectives, on the same data and definitions. O1 uses all 2025–2026 events; O2 and O3 use the
 matched cohort of storms from 17 June to 31 October 2026 (the continuous NISAR record): 982 events at 107 stations
 here, 979 in the team's run.
 
-| Report objective | This re-run | Team |
+| Report objective | This re-implementation | Team |
 |---|---|---|
 | O1: wetting windows are short | 3,343 events at 120 stations; median window 1.79 days; 55 % shorter than 48 h | 3,340 events; 1.8 days; 55 % |
 | O2: today's satellites miss about half of the events | Sentinel-1 30.3 %, NISAR 37.4 %, either 51.3 % | 30.2, 37.9 and 51.6 % |
 | O3: how often a satellite must look, and what ARMO adds | 80 % capture needs a look every 1.45 days; ARMO alone 77.0 %, today + ARMO 82.2 % | 1.46 days; 76.1 % and 81.5 % |
 
-The headline numbers reproduce within about one point. Details, confidence intervals and the method differences (for
-example, gap filling of up to 3 hours) are in [docs/FINDINGS.md](docs/FINDINGS.md), sections 1, 2 and 6.
+The headline numbers reproduce within about one percentage point. Details, confidence intervals and the method
+differences (for example, gap filling of up to 3 hours) are in [docs/RESULTS.md](docs/RESULTS.md), sections 1, 2 and 6.
 
 ## Main results
 
@@ -32,32 +36,31 @@ example, gap filling of up to 3 hours) are in [docs/FINDINGS.md](docs/FINDINGS.m
 | Mean gap between looks | 2.81 days | 1.42 days | 0.93 days |
 | Worst gap at any station | 20.0 days | 4.5 days | 4.5 days |
 
-982 wetting events at 107 USCRN stations, 17 June–31 October 2026 (the continuous NISAR record). Today's fleet uses
-real look times; ARMO is simulated (620 km dawn-dusk orbit, 25–45° off-nadir, 8 starting positions).
+982 wetting events at 107 USCRN stations, 17 June–31 October 2026. Today's fleet uses real look times; ARMO is
+simulated (620 km dawn–dusk orbit, 25–45° off-nadir, 8 starting positions).
 
 ![Capture and waiting time](figures/fig_capture_and_wait.png)
 
-- **The team's numbers reproduce** within one point (team: 51.6 %, 76.1 %, 81.5 %, gain +29.9; here +30.9, 95 % CI
-  28.0–33.6).
+- **The team's numbers reproduce** within one point (team: 51.6 %, 76.1 %, 81.5 %, gain +29.9 points; here +30.9,
+  95 % CI 28.0–33.6).
 - **Two satellites are needed.** Event by event, two satellites beat the best single satellite by 8.4 points alone
-  (95 % CI 7.1 to 9.7). One satellite matches two only by imaging about twice the ground per pass.
+  (95 % CI 7.1–9.7). One satellite matches two only by imaging about twice the ground per pass.
 - **The gain holds** under every wetting-window rule tried (+24 to +31 points) and without NISAR (Sentinel-1 + ARMO
   79.4 %).
-- **"Below 1.4 days" depends on latitude**: 1.42 days on average, 1.54 in the south and 1.27 in the north.
-- **Orbit traps.** Altitudes near short repeat cycles capture far less (560 km: 60.3 %, 720 km: 48.3 %). An exact
-  6-day repeat orbit at 613 km keeps capture and gives a same-geometry image every 3 days instead of every 45.
-- **Noise.** Real NISAR pairs show the measured change noise is not speckle (about 1.6 dB at the station at every
-  resolution from 100 to 500 m), so more looks will not fix it. A 200 m product at 40 MHz is the right target.
+- **The revisit gap varies with latitude:** 1.42 days on average, 1.54 in the south and 1.27 in the north; with
+  today's fleet every station is below 1.4 days.
+- **Orbit repeat cycle matters.** Altitudes near short repeat cycles capture far less (560 km: 60.3 %; 720 km: 48.3 %).
+  An exact 6-day repeat at 613 km keeps capture and gives a same-geometry image every 3 days instead of every 45.
+- **Noise.** Measured NISAR pairs show change noise above about 50 m is real scene change rather than speckle (about
+  1.6 dB at the station from 100 to 500 m); ARMO's burst-mode speckle is 0.95 dB at 200 m and 0.38 dB at 500 m.
 
 ## Documents
 
-| File | What it answers |
+| File | What it holds |
 |---|---|
-| [docs/FINDINGS.md](docs/FINDINGS.md) | All results with tables and figures: capture, waiting time, latitude, event definition, design sweeps, orbit traps, measured noise, caveats |
-| [docs/SUGGESTED_CHANGES.md](docs/SUGGESTED_CHANGES.md) | What the proposal should keep, reword and change, with the supporting numbers |
-| [docs/DATA_ACCESS.md](docs/DATA_ACCESS.md) | Which radar data we can actually get, and NISAR's measured gaps (2026 hole, revisit, delivery delay) |
-| [docs/RESOLUTION_AND_FEASIBILITY.md](docs/RESOLUTION_AND_FEASIBILITY.md) | Resolution target, swath and looks, power, why agencies do not fly more satellites, one vs two satellites, spacecraft numbers (sourced) |
-| [report-support/](report-support/README.md) | Scripts behind the revised report's mass, delta-v, launch, budget and station-by-station revisit numbers, and its Figure 8 (8 November) |
+| [docs/RESULTS.md](docs/RESULTS.md) | All results with tables and figures: capture, waiting time, latitude, event definition, design sweeps, orbit repeat options, measured noise, scope and assumptions |
+| [docs/DATA_ACCESS.md](docs/DATA_ACCESS.md) | Which radar records are openly available, and NISAR's measured gaps (2026 hole, revisit, delivery delay) |
+| [report-support/](report-support/README.md) | Scripts behind the final report's mass, delta-v, launch, budget and station-by-station revisit numbers, and Figures 4, 6, 8, 9 and 10 |
 
 ## Run it
 
@@ -82,11 +85,10 @@ python code/10_figures.py && python code/11_headline.py && python -m pytest -q t
 ```
 
 `code/04_orbit_sim.py` is the orbit model (J2 sun-synchronous, zero-Doppler looks); `code/sar_tradeoff.py` makes the
-feasibility tables and `figures/feas_*.png`. Every number quoted in the documents is collected in
+radar trade tables and `figures/feas_*.png`. Every number quoted in the documents is collected in
 `data/processed/headline.json`, and `tests/test_numbers.py` checks the documents against it. Raw downloads go to
-`data/raw/` and are not committed.
-
-The report-support scripts run the same way; see [report-support/README.md](report-support/README.md).
+`data/raw/` and are not committed. The report-support scripts run the same way; see
+[report-support/README.md](report-support/README.md).
 
 ## Data sources
 
@@ -97,21 +99,19 @@ The report-support scripts run the same way; see [report-support/README.md](repo
 | NISAR look times; GCOV backscatter | NASA CMR; ASF (`NISAR_L2_GCOV_PROVISIONAL_V1`) | CMR open; ASF free Earthdata login |
 | ALOS-2 ScanSAR look times | NASA CMR (`ALOS2_L1_PSR2`) | Open metadata |
 
-## Related repositories
+## Related repository
 
-| Repository | What it holds |
-|---|---|
-| [zheniannn/ARMO](https://github.com/zheniannn/ARMO) | The team's ARMO analysis, figures and method notes (Tang Zhen Ian) |
+[zheniannn/ARMO](https://github.com/zheniannn/ARMO): the team's ARMO analysis, figures and method notes (Tang Zhen Ian).
 
 ## Licence
 
 Code in this repository is released under the MIT License ([LICENSE](LICENSE)). Data downloaded or derived from NOAA
 USCRN, Copernicus Sentinel-1 (via Microsoft Planetary Computer), NASA NISAR and ALOS-2 metadata keep their providers'
-terms (see Data sources).
-
+terms (see Data sources). The four tables in `report-support/data/team_generated/` come from the team's MIT-licensed
+repository [zheniannn/ARMO](https://github.com/zheniannn/ARMO).
 
 ## Evidence labels
 
 **OBSERVED** (ground truth, real acquisitions), **SIMULATED** (orbit model), **MEASURED** (real radar images),
-**ASSUMED** (stated assumption). Main limits: one season (Jun–Oct 2026), few cropland stations, capture is not
-detection, and the ARMO runs assume the whole swath is imaged on every pass. See `docs/FINDINGS.md` section 10.
+**ASSUMED** (stated assumption). Main limits: one season (June–October 2026), few cropland stations, capture is not
+detection, and the ARMO runs assume the whole swath is imaged on every pass. See `docs/RESULTS.md` section 10.
