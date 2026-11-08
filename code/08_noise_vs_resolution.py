@@ -179,7 +179,7 @@ if __name__ == "__main__":
     rs = pd.DataFrame(resid); rs.to_csv(os.path.join(PROC, "noise_station_residual.csv"), index=False)
     print(rs.round(3).to_string(index=False))
     json.dump(dict(enl_fit=ENL_FIT, enl_resolution=ENL10), open(os.path.join(PROC, "noise_enl.json"), "w"))
-    # speckle-only references: NISAR with the fitted looks; ARMO burst modes from RESOLUTION_AND_FEASIBILITY.md section 2
+    # speckle-only references: NISAR with the fitted looks; ARMO burst modes from sar_tradeoff.py (feas_modes.csv) section 2
     sc = ns.scale_m.astype(float)
     ns["speckle_nisar_fit_db"] = speckle_db((sc / 10) ** 2 * ENL_FIT)
     ns["speckle_armo_8b_40mhz_db"] = np.where(sc >= 48, speckle_db(np.maximum((sc / 48.0) * (sc / 7.1), 1)), np.nan)

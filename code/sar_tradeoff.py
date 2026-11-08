@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ARMO SAR trade-off: swath, resolution, looks, speckle noise, NESZ, power, data and revisit.
 
-Companion to docs/RESOLUTION_AND_FEASIBILITY.md. Pure Python 3 + numpy + matplotlib.
+Radar trade-off tables and figures. Pure Python 3 + numpy + matplotlib.
 
 Run:  python code/sar_tradeoff.py
 Writes: figures/feas_*.png and data/processed/feas_*.csv (paths relative to the repo root).
@@ -280,7 +280,7 @@ def faraday_deg(f_hz, tec_tecu):
 
 
 # ----------------------------------------------------------------------------------------------
-# published mission values (all read on ACCESS; 'unverified' marks values I could not read on a source page)
+# published mission values (all read on ACCESS; 'unverified' marks values not found on a source page)
 # ----------------------------------------------------------------------------------------------
 SRC = {
     "esa_s1": "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1/Facts_and_figures",

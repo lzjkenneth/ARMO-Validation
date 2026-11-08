@@ -6,7 +6,7 @@ import numpy as np, pandas as pd
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 H = json.load(open(os.path.join(ROOT, "data", "processed", "headline.json")))
 DOCS = {n: open(os.path.join(ROOT, p), encoding="utf-8").read() for n, p in
-        (("findings", "docs/FINDINGS.md"), ("readme", "README.md"), ("changes", "docs/SUGGESTED_CHANGES.md"))}
+        (("results", "docs/RESULTS.md"), ("readme", "README.md"))}
 
 
 def load(name, path):
@@ -14,8 +14,8 @@ def load(name, path):
     spec.loader.exec_module(m); return m
 
 
-# keys whose formatted value must appear in FINDINGS.md
-FINDINGS_KEYS = """events_all stations_all cohort_events cohort_stations median_window_d share_lt_48h
+# keys whose formatted value must appear in RESULTS.md
+RESULTS_KEYS = """events_all stations_all cohort_events cohort_stations median_window_d share_lt_48h
 cap_s1 cap_nisar cap_fleet cap_armo cap_both ci_s1_lo ci_s1_hi ci_nisar_lo ci_nisar_hi ci_fleet_lo ci_fleet_hi ci_armo_lo
 ci_armo_hi ci_both_lo ci_both_hi gain gain_lo gain_hi cap_bothA cap_bothB cap_bothC cap_bothE
 wait_med_fleet wait_med_armo wait_med_both wait_mean_fleet wait_mean_armo wait_mean_both wait_p90_fleet wait_p90_armo
@@ -35,9 +35,9 @@ lag_HH200_36 s1_spatial_VV200_6 s1_spatial_VV200_24 s1_resid_VV200_6 s1_resid_VV
 s1_ratio_VV200 s1_ratio_VV200_lo s1_ratio_VV200_hi""".split()
 
 
-def test_findings_quote_every_headline_number():
-    missing = [f"{k}={H[k]['text']}" for k in FINDINGS_KEYS if H[k]["text"] not in DOCS["findings"]]
-    assert not missing, "FINDINGS.md does not quote: " + ", ".join(missing)
+def test_results_quote_every_headline_number():
+    missing = [f"{k}={H[k]['text']}" for k in RESULTS_KEYS if H[k]["text"] not in DOCS["results"]]
+    assert not missing, "RESULTS.md does not quote: " + ", ".join(missing)
 
 
 def test_readme_table_matches():
@@ -47,9 +47,9 @@ def test_readme_table_matches():
         assert H[k]["text"] in DOCS["readme"], k
 
 
-def test_review_checks_present_in_findings():
+def test_sensitivity_checks_present_in_results():
     for k in ("check_0", "check_1", "check_2"):
-        assert H[k]["text"].split(" (")[0] in DOCS["findings"], k
+        assert H[k]["text"].split(" (")[0] in DOCS["results"], k
 
 
 def test_orbit_geometry():

@@ -1,4 +1,4 @@
-"""Step 11 - collect every number quoted in README.md and docs/FINDINGS.md into data/processed/headline.json, formatted the
+"""Step 11 - collect every number quoted in README.md and docs/RESULTS.md into data/processed/headline.json, formatted the
 way the documents quote them. tests/test_numbers.py checks that each formatted value appears in the documents, so the
 write-up cannot drift away from the analysis outputs."""
 import os, sys, json

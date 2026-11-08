@@ -7,7 +7,7 @@ looking side. Positions every 10 s. Each design is averaged over N_PHASE startin
 
 The geometric access width of an off-nadir range [t1, t2] at altitude h is reported with Earth curvature:
   incidence eta = asin((Re + h) / Re * sin(theta)), central angle gamma = eta - theta, ground range = Re * gamma.
-This is ACCESS, not a validated imaging swath (see docs/RESOLUTION_AND_FEASIBILITY.md).
+This is ACCESS, not a validated imaging swath (radar trade numbers: code/sar_tradeoff.py).
 """
 import os, json, math
 import numpy as np, pandas as pd
